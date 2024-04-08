@@ -21,11 +21,22 @@
   padding: 1.5rem;
 }
 
+button {
+  background: transparent;
+  font-size: 2.5rem;
+  border: none;
+  margin: 1.5rem;
+  cursor: pointer;
+}
+
 header,
 footer {
   text-align: center;
-  text-shadow: 1px 2px;
   animation: textglow 5s 15s forwards;
+}
+
+.glow-text {
+  animation: textglow 5s 12.5s forwards;
 }
 
 @keyframes textglow {
@@ -106,8 +117,7 @@ footer {
   z-index: 5;
   background: black;
   opacity: 0%;
-  animation: darkensky 10s 5s linear forwards,
-    lightensky 10s 20s linear forwards;
+  animation: darkensky 10s linear forwards, lightensky 10s 20s linear forwards;
 }
 
 @keyframes darkensky {
@@ -137,16 +147,15 @@ footer {
   background: darkgray;
   position: absolute;
   top: 5%;
-  left: -50%;
+  left: -100%;
   /* z-index:  */
   transition: 0.2s linear;
-  animation: eclipsepan 10s 3s linear forwards,
-    eclipsedone 15s 20s linear forwards;
+  animation: eclipsepan 10s linear forwards, eclipsedone 15s 20s linear forwards;
 }
 
 @keyframes eclipsepan {
   0% {
-    left: -50%;
+    left: -100%;
   }
   100% {
     left: 20.5%;
@@ -169,8 +178,7 @@ footer {
   position: absolute;
 }
 
-.sun-eclipse-glow-layer::after {
-  content: "";
+.glow-layer {
   width: 200px;
   height: 200px;
   position: absolute;
@@ -178,7 +186,7 @@ footer {
   left: 20%;
   z-index: 20;
   border-radius: 50%;
-  animation: glow 8.5s 12s forwards;
+  animation: glow 11.5s 9s forwards;
 }
 
 @keyframes glow {
@@ -206,8 +214,12 @@ footer {
   background: black;
   z-index: 50;
   transform: translateY(100%);
-  animation: showrealeclipse 17s 11s forwards;
+  animation: showrealeclipse 18.5s 7.5s forwards;
   /* filter: blur(100px); */
+}
+
+.hide {
+  display: none;
 }
 
 .bbd-img {
@@ -224,6 +236,16 @@ footer {
   }
 
   35% {
+    transform: translateY(0%);
+    filter: blur(0px) hue-rotate(90deg);
+  }
+
+  40% {
+    transform: translateY(0%);
+    filter: blur(0px);
+  }
+
+  82.5% {
     transform: translateY(0%);
     filter: blur(0px);
   }
@@ -243,4 +265,10 @@ footer {
   height: 100%;
   width: 100%;
   clip-path: polygon(4% 0, 93% 0, 93% 100%, 5% 100%);
+}
+
+@media screen and (max-width: 550px) {
+  .mobile {
+    display: none;
+  }
 }

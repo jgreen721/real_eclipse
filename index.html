@@ -9,13 +9,16 @@
   </head>
   <body>
     <div class="app">
-      <header>
+      <header class="glow-text">
         <h1>CSS Eclipse</h1>
+        <button onclick="toggleBBD()">🙈</button>
       </header>
 
       <div class="scene-container">
         <div class="eclipse-layer"></div>
-        <div class="sun-eclipse-glow-layer"></div>
+        <div class="sun-eclipse-glow-layer">
+          <div class="glow-layer"></div>
+        </div>
         <div class="city scene-layer">
           <div class="sun"></div>
           <div class="eclipse"></div>
@@ -23,16 +26,17 @@
           <div style="--height: 300px" class="building building1"></div>
           <div style="--height: 255px" class="building building2"></div>
           <div style="--height: 265px" class="building building3"></div>
-          <div style="--height: 270px" class="building building4"></div>
-          <div style="--height: 300px" class="building building5"></div>
-          <div style="--height: 230px" class="building building6"></div>
+
+          <div style="--height: 270px" class="building building4 mobile"></div>
+          <div style="--height: 300px" class="building building5 mobile"></div>
+          <div style="--height: 230px" class="building building6 mobile"></div>
         </div>
         <div class="bbd-layer">
           <img class="bbd-img" src="./eclipsebbd.jpeg" alt="" />
         </div>
       </div>
 
-      <footer>
+      <footer class="glow-text">
         <strong>Footer&copy;</strong>
       </footer>
     </div>
@@ -63,6 +67,54 @@
           windowRow.appendChild(windowThree);
           building.appendChild(windowRow);
         }
+      }
+
+      const eclipseAnimations = document
+        .querySelector(".eclipse")
+        .getAnimations();
+      const eclipseLayerAnimations = document
+        .querySelector(".eclipse-layer")
+        .getAnimations();
+      const sunEclipseGlowLayerAnimations = document
+        .querySelector(".glow-layer")
+        .getAnimations();
+
+      const glowHeaderAnimations = document
+        .querySelector("header")
+        .getAnimations();
+
+      const glowFooterAnimations = document
+        .querySelector("footer")
+        .getAnimations();
+
+      const bbdAnimations = document
+        .querySelector(".bbd-layer")
+        .getAnimations();
+
+      function toggleBBD() {
+        if (document.querySelector("button").innerText === "🐵") {
+          document.querySelector("button").innerText = "🙈";
+          document.querySelector(".bbd-layer").classList.remove("hide");
+        } else {
+          document.querySelector("button").innerText = "🐵";
+          document.querySelector(".bbd-layer").classList.add("hide");
+        }
+        eclipseAnimations.forEach((animation) => animation.cancel());
+        eclipseLayerAnimations.forEach((animation) => animation.cancel());
+        glowHeaderAnimations.forEach((animation) => animation.cancel());
+        glowFooterAnimations.forEach((animation) => animation.cancel());
+        bbdAnimations.forEach((animation) => animation.cancel());
+        sunEclipseGlowLayerAnimations.forEach((animation) =>
+          animation.cancel()
+        );
+
+        // Play animations
+        eclipseAnimations.forEach((animation) => animation.play());
+        eclipseLayerAnimations.forEach((animation) => animation.play());
+        sunEclipseGlowLayerAnimations.forEach((animation) => animation.play());
+        glowHeaderAnimations.forEach((animation) => animation.play());
+        glowFooterAnimations.forEach((animation) => animation.play());
+        bbdAnimations.forEach((animation) => animation.play());
       }
     </script>
   </body>

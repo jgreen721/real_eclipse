@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>CSS Eclipse</title>
+  </head>
+  <body>
+    <div class="app">
+      <header>
+        <h1>CSS Eclipse</h1>
+      </header>
+
+      <div class="scene-container">
+        <div class="eclipse-layer"></div>
+        <div class="sun-eclipse-glow-layer"></div>
+        <div class="city scene-layer">
+          <div class="sun"></div>
+          <div class="eclipse"></div>
+
+          <div style="--height: 300px" class="building building1"></div>
+          <div style="--height: 255px" class="building building2"></div>
+          <div style="--height: 265px" class="building building3"></div>
+          <div style="--height: 270px" class="building building4"></div>
+          <div style="--height: 300px" class="building building5"></div>
+          <div style="--height: 230px" class="building building6"></div>
+        </div>
+        <div class="bbd-layer">
+          <img class="bbd-img" src="./eclipsebbd.jpeg" alt="" />
+        </div>
+      </div>
+
+      <footer>
+        <strong>Footer&copy;</strong>
+      </footer>
+    </div>
+
+    <script>
+      let buildings = document.querySelectorAll(".building");
+
+      buildings.forEach((building) => {
+        console.log("Building", building.clientHeight);
+        addWindows(building.clientHeight, building);
+      });
+
+      function addWindows(height, building) {
+        for (let i = 0; i < Math.floor(height / 50); i++) {
+          let windowRow = document.createElement("div");
+          let windowOne = document.createElement("div");
+          let windowTwo = document.createElement("div");
+          let windowThree = document.createElement("div");
+          windowOne.className = "window";
+          windowTwo.className = "window";
+          windowThree.className = "window";
+          windowRow.className = "window-row";
+          if (Math.random() > 0.5) windowOne.classList.add("lights-on");
+          if (Math.random() > 0.5) windowTwo.classList.add("lights-on");
+          if (Math.random() > 0.5) windowThree.classList.add("lights-on");
+          windowRow.appendChild(windowOne);
+          windowRow.appendChild(windowTwo);
+          windowRow.appendChild(windowThree);
+          building.appendChild(windowRow);
+        }
+      }
+    </script>
+  </body>
+</html>

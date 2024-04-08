@@ -1,0 +1,246 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.app {
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 100vh;
+  max-width: 85rem;
+  margin: 0 auto;
+  /* border: 2px solid black; */
+  flex-direction: column;
+  background: rgb(36, 34, 34);
+  font-family: "Montserrat", sans-serif;
+  padding: 1.5rem;
+}
+
+header,
+footer {
+  text-align: center;
+  text-shadow: 1px 2px;
+  animation: textglow 5s 15s forwards;
+}
+
+@keyframes textglow {
+  35% {
+    text-shadow: 4px 5px 1px yellow, 3px 12px 10px yellow, 5px 10px 12px white,
+      6px 10px 25px yellow, 4px 10px 35px white;
+  }
+  50% {
+    text-shadow: 1px 1px 1px yellow, 1px 2px 10px yellow, 1px 2px 12px white,
+      1px 1px 25px yellow, 1px 1px 35px white;
+  }
+
+  100% {
+    text-shadow: 1px 1px 1px yellow, 1px 2px 1px yellow, 1px 2px 2px white,
+      1px 1px 5px yellow, 1px 1px 5px white;
+  }
+}
+
+.scene-container {
+  height: 450px;
+  width: clamp(45%, 500px, 95%);
+  border: 2px solid black;
+  border-radius: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.scene-layer {
+  position: absolute;
+  inset: 0;
+  /* border: 2px solid red; */
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  background: skyblue;
+}
+
+.building {
+  width: 75px;
+  background: gray;
+  height: var(--height);
+  position: relative;
+  z-index: 50;
+  padding: 0.15rem;
+}
+
+.window-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 0.25rem;
+  margin: 1.5rem 0;
+}
+
+.window {
+  height: 20px;
+  width: 20px;
+  background: black;
+}
+
+.lights-on {
+  background: radial-gradient(white, yellow);
+}
+
+.sun {
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  background: yellow;
+  position: absolute;
+  left: 20%;
+  top: 5%;
+}
+
+.eclipse-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  background: black;
+  opacity: 0%;
+  animation: darkensky 10s 5s linear forwards,
+    lightensky 10s 20s linear forwards;
+}
+
+@keyframes darkensky {
+  0% {
+    opacity: 0%;
+  }
+
+  100% {
+    opacity: 97.5%;
+  }
+}
+
+@keyframes lightensky {
+  0% {
+    opacity: 97.5%;
+  }
+
+  100% {
+    opacity: 0%;
+  }
+}
+
+.eclipse {
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  background: darkgray;
+  position: absolute;
+  top: 5%;
+  left: -50%;
+  /* z-index:  */
+  transition: 0.2s linear;
+  animation: eclipsepan 10s 3s linear forwards,
+    eclipsedone 15s 20s linear forwards;
+}
+
+@keyframes eclipsepan {
+  0% {
+    left: -50%;
+  }
+  100% {
+    left: 20.5%;
+    background: black;
+  }
+}
+
+@keyframes eclipsedone {
+  0% {
+    left: 22%;
+  }
+  100% {
+    left: 128%;
+    background: darkgray;
+  }
+}
+
+.sun-eclipse-glow-layer {
+  inset: 0;
+  position: absolute;
+}
+
+.sun-eclipse-glow-layer::after {
+  content: "";
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  top: 5%;
+  left: 20%;
+  z-index: 20;
+  border-radius: 50%;
+  animation: glow 8.5s 12s forwards;
+}
+
+@keyframes glow {
+  35% {
+    box-shadow: 4px 5px 1px yellow, 3px 12px 10px yellow, 5px 10px 12px white,
+      6px 10px 25px yellow, 4px 10px 35px white;
+  }
+  50% {
+    box-shadow: 1px 1px 1px yellow, 1px 2px 10px yellow, 1px 2px 12px white,
+      1px 1px 25px yellow, 1px 1px 35px white;
+  }
+
+  95% {
+    box-shadow: 1px 1px 1px yellow, 1px 2px 1px yellow, 1px 2px 2px white,
+      1px 1px 5px yellow, 1px 1px 5px white;
+  }
+  100% {
+    box-shadow: 1px 1px 2px transparent;
+  }
+}
+
+.bbd-layer {
+  inset: 0;
+  position: absolute;
+  background: black;
+  z-index: 50;
+  transform: translateY(100%);
+  animation: showrealeclipse 17s 11s forwards;
+  /* filter: blur(100px); */
+}
+
+.bbd-img {
+}
+
+@keyframes showrealeclipse {
+  0% {
+    transform: translateY(100%);
+    filter: blur(100px);
+  }
+  25% {
+    transform: translateY(0%);
+    filter: blur(100px);
+  }
+
+  35% {
+    transform: translateY(0%);
+    filter: blur(0px);
+  }
+  85% {
+    transform: translateY(0%);
+    filter: blur(5px);
+  }
+
+  100% {
+    transform: translateY(0%);
+    filter: blur(0px);
+    opacity: 0;
+  }
+}
+
+.bbd-img {
+  height: 100%;
+  width: 100%;
+  clip-path: polygon(4% 0, 93% 0, 93% 100%, 5% 100%);
+}

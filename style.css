@@ -32,11 +32,7 @@ button {
 header,
 footer {
   text-align: center;
-  animation: textglow 5s 15s forwards;
-}
-
-.glow-text {
-  animation: textglow 5s 12.5s forwards;
+  animation: textglow 5s 11s forwards;
 }
 
 @keyframes textglow {
@@ -58,7 +54,7 @@ footer {
 .scene-container {
   height: 450px;
   width: clamp(45%, 500px, 95%);
-  border: 2px solid black;
+  /* border: 2px solid black; */
   border-radius: 1rem;
   position: relative;
   overflow: hidden;
@@ -74,13 +70,159 @@ footer {
   background: skyblue;
 }
 
-.building {
+.building-parent {
   width: 75px;
+  background: gray;
+  position: relative;
+  z-index: 50;
+}
+
+.building {
+  width: 100%;
+  width: 100%;
   background: gray;
   height: var(--height);
   position: relative;
-  z-index: 50;
   padding: 0.15rem;
+}
+
+.people-row {
+  position: absolute;
+  width: 100%;
+  height: 75px;
+  /* border: 2px solid black; */
+  top: -75px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.person {
+  height: 100%;
+  width: 25px;
+  /* border: 1px solid red; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  transition: 1s;
+}
+
+.blurb {
+  background: white;
+  position: absolute;
+  border-radius: 100px;
+  top: -2.5rem;
+  right: -2rem;
+  width: fit-content;
+  padding: 0.5rem;
+  font-size: 0.8rem;
+  opacity: 0;
+  animation: sayblurb 2s var(--delay) forwards;
+}
+
+@keyframes sayblurb {
+  100% {
+    opacity: 1;
+  }
+}
+
+.blurb-right {
+  right: -5.5rem;
+}
+
+.person2 {
+  transform: scale(0.85) translateY(1rem);
+}
+
+.head {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: black;
+}
+
+.body {
+  height: 25px;
+  width: 15px;
+  background: black;
+  position: relative;
+}
+
+.body::after {
+  width: 15px;
+  height: 5px;
+  background: black;
+  content: "";
+  position: absolute;
+  right: -15px;
+  transform-origin: left;
+  transform: rotate(15deg);
+}
+
+.body::before {
+  width: 15px;
+  height: 5px;
+  background: black;
+  content: "";
+  position: absolute;
+  left: -15px;
+  transform-origin: right;
+  transform: rotate(-15deg);
+}
+
+.legs {
+  height: 30px;
+  width: 25px;
+  /* border: 1px solid black; */
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.leg {
+  transform-origin: top;
+  height: 100%;
+  width: 8px;
+  background: black;
+}
+
+.leg1 {
+  transform: rotate(3deg);
+}
+
+.leg2 {
+  transform: rotate(-3deg);
+}
+
+.fall-right {
+  animation: fallright 4s var(--delay) forwards;
+}
+
+@keyframes fallright {
+  25% {
+    transform: rotate(-20deg) translateX(-2rem);
+    top: 0rem;
+  }
+  100% {
+    transform: rotate(-20deg) translateX(-2rem);
+    top: 65rem;
+  }
+}
+
+.fall-left {
+  animation: fallleft 4s var(--delay) forwards;
+}
+
+@keyframes fallleft {
+  25% {
+    transform: rotate(20deg) translateX(2rem);
+    top: 0rem;
+  }
+  100% {
+    transform: rotate(20deg) translateX(2rem);
+    top: 65rem;
+  }
 }
 
 .window-row {
@@ -148,7 +290,6 @@ footer {
   position: absolute;
   top: 5%;
   left: -100%;
-  /* z-index:  */
   transition: 0.2s linear;
   animation: eclipsepan 10s linear forwards, eclipsedone 15s 20s linear forwards;
 }
@@ -213,9 +354,9 @@ footer {
   position: absolute;
   background: black;
   z-index: 50;
-  transform: translateY(100%);
-  animation: showrealeclipse 18.5s 7.5s forwards;
-  /* filter: blur(100px); */
+  /* transform: translateY(100%); */
+  animation: showrealeclipse 12.5s 6.75s forwards;
+  filter: blur(500px);
 }
 
 .hide {
@@ -227,37 +368,24 @@ footer {
 
 @keyframes showrealeclipse {
   0% {
-    transform: translateY(100%);
-    filter: blur(100px);
+    opacity: 0;
+    filter: blur(200px);
   }
   25% {
-    transform: translateY(0%);
-    filter: blur(100px);
+    opacity: 0.5;
+    filter: blur(200px);
   }
-
-  35% {
-    transform: translateY(0%);
-    filter: blur(0px) hue-rotate(90deg);
-  }
-
-  40% {
-    transform: translateY(0%);
+  50% {
+    opacity: 0.75;
     filter: blur(0px);
   }
-
-  82.5% {
-    transform: translateY(0%);
-    filter: blur(0px);
+  75% {
+    opacity: 0.5;
+    filter: blur(200px);
   }
-  85% {
-    transform: translateY(0%);
-    filter: blur(5px);
-  }
-
   100% {
-    transform: translateY(0%);
-    filter: blur(0px);
     opacity: 0;
+    filter: blur(0px);
   }
 }
 

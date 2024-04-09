@@ -11,7 +11,7 @@
     <div class="app">
       <header class="glow-text">
         <h1>CSS Eclipse</h1>
-        <button onclick="toggleBBD()">🙈</button>
+        <!-- <button onclick="toggleBBD()">🙈</button> -->
       </header>
 
       <div class="scene-container">
@@ -23,13 +23,94 @@
           <div class="sun"></div>
           <div class="eclipse"></div>
 
-          <div style="--height: 300px" class="building building1"></div>
-          <div style="--height: 255px" class="building building2"></div>
-          <div style="--height: 265px" class="building building3"></div>
+          <div style="--height: 300px" class="building1 building-parent">
+            <div class="people-row">
+              <div style="--delay: 12.8s" class="person person1 fall-right">
+                <div style="--delay: 7s" class="blurb">
+                  <p>wow!!!</p>
+                </div>
+                <div class="head"></div>
+                <div class="body"></div>
+                <div class="legs">
+                  <div class="leg leg1"></div>
+                  <div class="leg leg2"></div>
+                </div>
+              </div>
+              <div style="--delay: 12.6s" class="person person2 fall-left">
+                <div style="--delay: 9s" class="blurb blurb-right">
+                  <p>its amazing!</p>
+                </div>
+                <div class="head"></div>
+                <div class="body"></div>
+                <div class="legs">
+                  <div class="leg leg1"></div>
+                  <div class="leg leg2"></div>
+                </div>
+              </div>
+            </div>
+            <div class="building"></div>
+          </div>
+          <div style="--height: 255px" class="building2 building-parent">
+            <div class="building"></div>
+          </div>
+          <div style="--height: 265px" class="building3 building-parent">
+            <div class="people-row">
+              <div style="--delay: 12.5s" class="person person1 fall-right">
+                <div style="--delay: 8s" class="blurb">
+                  <p>ohhhh!!!</p>
+                </div>
+                <div class="head"></div>
+                <div class="body"></div>
+                <div class="legs">
+                  <div class="leg leg1"></div>
+                  <div class="leg leg2"></div>
+                </div>
+              </div>
+              <div style="--delay: 12.7s" class="person person2 fall-left">
+                <div class="head"></div>
+                <div class="body"></div>
+                <div class="legs">
+                  <div class="leg leg1"></div>
+                  <div class="leg leg2"></div>
+                </div>
+              </div>
+            </div>
+            <div class="building"></div>
+          </div>
 
-          <div style="--height: 270px" class="building building4 mobile"></div>
-          <div style="--height: 300px" class="building building5 mobile"></div>
-          <div style="--height: 230px" class="building building6 mobile"></div>
+          <div style="--height: 270px" class="building4 building-parent mobile">
+            <div class="building"></div>
+          </div>
+          <div style="--height: 300px" class="building5 building-parent mobile">
+            <div class="people-row">
+              <div style="--delay: 12.4s" class="person person1 fall-right">
+                <div style="--delay: 9s" class="blurb">
+                  <p>wow!!!</p>
+                </div>
+                <div class="head"></div>
+                <div class="body"></div>
+                <div class="legs">
+                  <div class="leg leg1"></div>
+                  <div class="leg leg2"></div>
+                </div>
+              </div>
+              <div style="--delay: 12.6s" class="person person2 fall-left">
+                <div style="--delay: 7.5s" class="blurb">
+                  <p>.....!</p>
+                </div>
+                <div class="head"></div>
+                <div class="body"></div>
+                <div class="legs">
+                  <div class="leg leg1"></div>
+                  <div class="leg leg2"></div>
+                </div>
+              </div>
+            </div>
+            <div class="building"></div>
+          </div>
+          <div style="--height: 230px" class="building6 building-parent mobile">
+            <div class="building"></div>
+          </div>
         </div>
         <div class="bbd-layer">
           <img class="bbd-img" src="./eclipsebbd.jpeg" alt="" />
@@ -116,6 +197,15 @@
         glowFooterAnimations.forEach((animation) => animation.play());
         bbdAnimations.forEach((animation) => animation.play());
       }
+
+      function triggerScream() {
+        setTimeout(() => {
+          document.querySelectorAll(".blurb").forEach((blurb) => {
+            blurb.innerHTML = "Ahhhh!! ";
+          });
+        }, 11750);
+      }
+      triggerScream();
     </script>
   </body>
 </html>

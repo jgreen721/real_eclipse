@@ -355,7 +355,7 @@ footer {
   background: black;
   z-index: 50;
   /* transform: translateY(100%); */
-  animation: showrealeclipse 12.5s 6.75s forwards;
+  animation: showrealeclipse 16s 6.75s forwards;
   filter: blur(500px);
 }
 
@@ -375,17 +375,17 @@ footer {
     opacity: 0.5;
     filter: blur(200px);
   }
-  50% {
+  35% {
     opacity: 0.75;
     filter: blur(0px);
   }
   75% {
     opacity: 0.5;
-    filter: blur(200px);
+    filter: blur(0px);
   }
   100% {
     opacity: 0;
-    filter: blur(0px);
+    filter: blur(10px);
   }
 }
 
